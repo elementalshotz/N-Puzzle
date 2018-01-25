@@ -12,7 +12,6 @@ namespace N_Puzzle
         int Dimension;
         public Position pos = new Position();
         public Position oldPos = new Position();
-        public enum Direction { Up, Down, Left, Right }; //TODO: do something with enum
 
         public Board() : this(4) //If there is no parameter input or input is smaller than 4 default to 4x4
         {
@@ -137,30 +136,14 @@ namespace N_Puzzle
         public bool Solved()
         {
             bool isSolved = false;                          //Creates two variables one used for statements, one used for filling the matrix that we use to check against
-            int x = 1, i = 0, j = 0;
-            Tile[,] tile = new Tile[Dimension, Dimension];  //The temporary filled solved matrix that is used for checking if the GameMatrix is solved
-
-            for (i = 0; i < Dimension; i++)             //Used with x to fill the tile matrix where the last position in the board is 0
+            int x = 2, i = 0, j = 0;
+            Tile[,] tile = createSolvedBoard(i,j);  //The temporary filled solved matrix that is used for checking if the GameMatrix is solve
+            
+            for (i = 0; i < Dimension; i++)
             {
-                for (j = 0; j < Dimension; j++)
+                for (j = 0; j < Dimension - 1; j++)
                 {
-                    if (i == Dimension-1 && j == Dimension-1)
-                    {
-                        tile[i, j] = new Tile(0);
-                    } else
-                    {
-                        tile[i, j] = new Tile(x);
-                        x++;
-                    }
-                }
-            }
-
-            i = j = 0;
-            for  (i = 0; i < Dimension; i++)             //Used to check tile[i,j] against GameMatrix[i,j] and if it is true return true or false if it is false
-            {
-                for (j = 0; j < Dimension; j++)
-                {
-                    if (GameMatrix[i,j].Value.Equals(tile[i,j].Value))
+                    if (GameMatrix[i,j].Value == tile[i,j].Value)
                     {
                         isSolved = true;
                     } else
@@ -171,10 +154,34 @@ namespace N_Puzzle
                 }
             }
 
-            if (GameMatrix[Dimension-1,Dimension-1].Value != 0)
-                isSolved = false;
-
             return isSolved;                        //Returns the value from the loop that used to check the solved against a pre solved version of the board.
+        }
+
+        public Tile[,] createSolvedBoard(int i, int j)
+        {
+            Tile[,] tile = new Tile[Dimension, Dimension];
+            int x = 1;
+
+            for (i = 0; i < Dimension; i++)             //Used with x to fill the tile matrix where the last position in the board is 0
+            {
+                for (j = 0; j < Dimension; j++)
+                {
+                    if (i == Dimension - 1 && j == Dimension - 1)
+                    {
+                        tile[i, j] = new Tile(0);
+                        Console.Write(0);
+                    }
+                    else
+                    {
+                        tile[i, j] = new Tile(x);
+                        Console.Write(x);
+                        x++;
+                    }
+                }
+                Console.WriteLine();
+            }
+
+            return tile;
         }
 
         public Position GetOldPosition()        
