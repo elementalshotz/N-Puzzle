@@ -141,17 +141,21 @@ namespace N_Puzzle
             
             for (i = 0; i < Dimension; i++)
             {
-                for (j = 0; j < Dimension - 1; j++)
+                for (j = 0; j < Dimension; j++)
                 {
-                    if (GameMatrix[i,j].Value == tile[i,j].Value)
+                    if (GameMatrix[i, j].Value == tile[i, j].Value && GameMatrix[Dimension - 1, Dimension - 1].Value == 0)
                     {
                         isSolved = true;
-                    } else
+                    }
+                    else if (GameMatrix[i, j].Value != tile[i, j].Value && GameMatrix[Dimension - 1, Dimension - 1].Value == 0)
                     {
                         isSolved = false;
                         break;
                     }
                 }
+
+                if (isSolved == false)
+                    break;
             }
 
             return isSolved;                        //Returns the value from the loop that used to check the solved against a pre solved version of the board.
@@ -169,16 +173,13 @@ namespace N_Puzzle
                     if (i == Dimension - 1 && j == Dimension - 1)
                     {
                         tile[i, j] = new Tile(0);
-                        Console.Write(0);
                     }
                     else
                     {
                         tile[i, j] = new Tile(x);
-                        Console.Write(x);
                         x++;
                     }
                 }
-                Console.WriteLine();
             }
 
             return tile;
