@@ -160,7 +160,7 @@ namespace N_Puzzle
             {
                 for (j = 0; j < Dimension; j++)
                 {
-                    if (GameMatrix[i,j].Value >= tile[i,j].Value)
+                    if (GameMatrix[i,j].Value.Equals(tile[i,j].Value))
                     {
                         isSolved = true;
                     } else
