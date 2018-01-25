@@ -12,6 +12,7 @@ namespace N_Puzzle
         int Dimension;
         public Position pos = new Position();
         public Position oldPos = new Position();
+        public enum Direction { Up, Down, Left, Right };
 
         public Board() : this(4) //If there is no parameter input or input is smaller than 4 default to 4x4
         {
