@@ -16,7 +16,7 @@ namespace N_Puzzle
             Console.Title = "N-Puzzle";
             Console.Clear();
 
-            Board board;
+            NPuzzle board;
 
             Console.WriteLine("What size do you want for the puzzle?");    //Tells the user to make an input of a digit
             String input = Console.ReadLine();
@@ -25,11 +25,11 @@ namespace N_Puzzle
 
             if (size < 4)                   //When the size is less than 4 we will use 4x4
             {
-                board = new Board();
+                board = new NPuzzle();
             }
             else
             {                               //Else use the size that has been as an input from the user
-                board = new Board(size);
+                board = new NPuzzle(size);
             }
 
             //board = new Board(size);
