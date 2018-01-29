@@ -10,8 +10,8 @@ namespace N_Puzzle
     {
         Tile[,] GameMatrix;
         int Dimension;
-        public Position pos = new Position();
-        public Position oldPos = new Position();
+        Position pos, oldPos;
+        public enum Direction { Up, Down, Right, Left }
 
         public Board() : this(4) //If there is no parameter input or input is smaller than 4 default to 4x4
         {
@@ -23,8 +23,8 @@ namespace N_Puzzle
             GameMatrix = new Tile[n, n];          //Set size n,n and Dimension to n as well as marking the last position of the board
             Dimension = n;
 
-            pos.X = pos.Y = n - 1;
-            oldPos.X = oldPos.Y = n - 1;
+            pos = new Position(n - 1, n - 1);
+            oldPos = new Position(n - 1, n - 1);
 
             FillBoard();                        //Fill the board with numbers and shuffle
             ShuffleBoard();
@@ -40,14 +40,12 @@ namespace N_Puzzle
             Random random = new Random();
             int numberOfSwaps = Dimension * Dimension * 2 - 1;
 
-            Position firstTile = new Position(), secondTile = new Position();
+            Position firstTile, secondTile;
 
             for (int counter = 0; counter < numberOfSwaps; counter++)           //Loop (Dimension^2)*2 - 1 times
             {
-                firstTile.X = random.Next(Dimension);
-                firstTile.Y = random.Next(Dimension);
-                secondTile.X = random.Next(Dimension);
-                secondTile.Y = random.Next(Dimension);
+                firstTile = new Position(random.Next(Dimension), random.Next(Dimension));
+                secondTile = new Position(random.Next(Dimension), random.Next(Dimension));
                 Swap(firstTile, secondTile); //Create 4 random locations 2 on x and 2 on y within 0 to Dimension and swap those
             }
 
@@ -62,8 +60,8 @@ namespace N_Puzzle
                 {
                     if (GameMatrix[y, x].Value == 0)
                     {
-                        pos.X = oldPos.X = x;       //When space is found store it in a position x and y which is used to swap when we go somewhere in the board
-                        pos.Y = oldPos.Y = y;
+                        pos.update(x, y);
+                        oldPos.update(x, y);
                     }
                 }
             }
@@ -119,18 +117,14 @@ namespace N_Puzzle
                     if (i == Dimension - 1 && j == Dimension - 1)
                     {
                         GameMatrix[i, j] = new Tile(0);
-                    } else {
+                    }
+                    else
+                    {
                         GameMatrix[i, j] = new Tile(x);
                         x++;
                     }
                 }
             }
-        }
-
-        public void updateOldPos()                  //Updates old position which was used to swap to the new position that the space has
-        {
-            oldPos.X = pos.X;
-            oldPos.Y = pos.Y;
         }
 
         public bool Solved()
@@ -185,14 +179,30 @@ namespace N_Puzzle
             return tile;
         }
 
-        public Position GetOldPosition()        
+        public void Move(Direction direction)
         {
-            return oldPos;                          //Returns the old position to be used in another place
-        }
+            switch (direction)
+            {
+                case Direction.Left:
+                    if (pos.X > 0)
+                        pos.update(pos.X - 1, pos.Y);
+                    break;
+                case Direction.Right:
+                    if (pos.X < Dimension - 1)
+                        pos.update(pos.X + 1, pos.Y);
+                    break;
+                case Direction.Up:
+                    if (pos.Y > 0)
+                        pos.update(pos.X, pos.Y - 1);
+                    break;
+                case Direction.Down:
+                    if (pos.Y < Dimension - 1)
+                        pos.update(pos.X, pos.Y + 1);
+                    break;
+            }
 
-        public Position GetPosition()
-        {
-            return pos;                             //Returns the position of the 0(space) also to be used in another place.
+            Swap(oldPos, pos);
+            oldPos.update(pos.X, pos.Y);
         }
     }
 }

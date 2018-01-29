@@ -6,9 +6,21 @@ using System.Threading.Tasks;
 
 namespace N_Puzzle
 {
-    class Position          //Holds the position for x and y
+    class Position         //Holds the position for x and y
     {
-        public int X;
-        public int Y;
+        public int X { get; protected set; }
+        public int Y { get; protected set; }
+
+        public Position(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
+
+        public void update(int x, int y)
+        {
+            X = x;
+            Y = y;
+        }
     }
 }
