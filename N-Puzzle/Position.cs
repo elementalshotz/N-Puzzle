@@ -17,7 +17,7 @@ namespace N_Puzzle
             Y = y;
         }
 
-        public void update(int x, int y)
+        public void Update(int x, int y)
         {
             X = x;
             Y = y;

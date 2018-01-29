@@ -60,8 +60,8 @@ namespace N_Puzzle
                 {
                     if (GameMatrix[y, x].Value == 0)
                     {
-                        pos.update(x, y);
-                        oldPos.update(x, y);
+                        pos.Update(x, y);
+                        oldPos.Update(x, y);
                     }
                 }
             }
@@ -126,24 +126,24 @@ namespace N_Puzzle
             {
                 case Direction.Left:
                     if (pos.X > 0)
-                        pos.update(pos.X - 1, pos.Y);
+                        pos.Update(pos.X - 1, pos.Y);
                     break;
                 case Direction.Right:
                     if (pos.X < Dimension - 1)
-                        pos.update(pos.X + 1, pos.Y);
+                        pos.Update(pos.X + 1, pos.Y);
                     break;
                 case Direction.Up:
                     if (pos.Y > 0)
-                        pos.update(pos.X, pos.Y - 1);
+                        pos.Update(pos.X, pos.Y - 1);
                     break;
                 case Direction.Down:
                     if (pos.Y < Dimension - 1)
-                        pos.update(pos.X, pos.Y + 1);
+                        pos.Update(pos.X, pos.Y + 1);
                     break;
             }
 
             Swap(oldPos, pos);
-            oldPos.update(pos.X, pos.Y);
+            oldPos.Update(pos.X, pos.Y);
         }
 
 

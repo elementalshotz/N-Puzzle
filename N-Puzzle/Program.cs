@@ -23,16 +23,7 @@ namespace N_Puzzle
             int size;
             Int32.TryParse(input, out size);                //If it can be parsed we will then compare it to a statement
 
-            if (size < 4)                   //When the size is less than 4 we will use 4x4
-            {
-                board = new NPuzzle();
-            }
-            else
-            {                               //Else use the size that has been as an input from the user
-                board = new NPuzzle(size);
-            }
-
-            //board = new Board(size);
+            board = new NPuzzle(size);
             board.DrawBoard();              //Prints the board on screen
 
             ConsoleKeyInfo keyInfo;         //Used to read keys in console
