@@ -7,21 +7,23 @@ using System.Threading.Tasks;
 namespace N_Puzzle
 {
     class Program
-    { 
+    {
 
         static void Main(string[] args)
         {
-            Console.BackgroundColor = ConsoleColor.DarkCyan;       //Sets background and foreground color
-            Console.ForegroundColor = ConsoleColor.Black;
+            Console.BackgroundColor = ConsoleColor.Black;       //Sets background and foreground color
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.Title = "N-Puzzle";
             Console.Clear();
 
-            NPuzzle board;
-
-            Console.WriteLine("What size do you want for the puzzle?");    //Tells the user to make an input of a digit
-            String input = Console.ReadLine();
             int size;
-            Int32.TryParse(input, out size);                //If it can be parsed we will then compare it to a statement
+            NPuzzle board;
+            String input;
+
+            do {
+                Console.WriteLine("What size do you want for the puzzle?");    //Tells the user to make an input of a digit
+                input = Console.ReadLine();
+            } while (!Int32.TryParse(input, out size));                //If it can be parsed we will then compare it to a statement)
 
             board = new NPuzzle(size);
             board.DrawBoard();              //Prints the board on screen

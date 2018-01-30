@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,11 +28,6 @@ namespace N_Puzzle
 
             FillBoard();                        //Fill the board with numbers and shuffle
             ShuffleBoard();
-        }
-
-        public int GetSize()
-        {
-            return Dimension;                   //Return the number of columns/rows there is in the board.
         }
 
         private void ShuffleBoard()             //Shuffle the board using Random and a variable that is used to loop so many times
