@@ -30,7 +30,7 @@ namespace N_Puzzle
             ShuffleBoard();
         }
 
-        private void ShuffleBoard()             //Shuffle the board using Random and a variable that is used to loop so many times
+        private void ShuffleBoard()             //Shuffle the board using Random and a variable that is used to loop ((Dimension^2)*2)-1
         {
             Random random = new Random();
             int numberOfSwaps = Dimension * Dimension * 2 - 1;
