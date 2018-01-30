@@ -26,7 +26,7 @@ namespace N_Puzzle
             pos = new Position(n - 1, n - 1);
             oldPos = new Position(n - 1, n - 1);
 
-            FillBoard();                        //Fill the board with numbers and shuffle
+            FillBoard(GameMatrix);                        //Fill the board with numbers and shuffle
             ShuffleBoard();
         }
 
@@ -46,7 +46,7 @@ namespace N_Puzzle
 
             FindSpace();    //When the loop is done find the space that was swapped using the loop
         }
-
+        
         private void FindSpace()
         {
             for (int x = 0; x < Dimension; x++)
@@ -94,7 +94,7 @@ namespace N_Puzzle
             Console.Clear();                //Clears the console(completely removing the board from the console)
         }
 
-        private void FillBoard()
+        protected void FillBoard(Tile[,] boardToFill)
         {
             int x = 1;
 
@@ -104,11 +104,11 @@ namespace N_Puzzle
                 {
                     if (i == Dimension - 1 && j == Dimension - 1)
                     {
-                        GameMatrix[i, j] = new Tile(0);
+                        boardToFill[i, j] = new Tile(0);
                     }
                     else
                     {
-                        GameMatrix[i, j] = new Tile(x);
+                        boardToFill[i, j] = new Tile(x);
                         x++;
                     }
                 }

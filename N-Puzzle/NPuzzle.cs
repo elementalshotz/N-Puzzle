@@ -15,7 +15,8 @@ namespace N_Puzzle
         {
             bool isSolved = false;                          //Creates two variables one used for statements, one used for filling the matrix that we use to check against
             int x = 2, i = 0, j = 0;
-            Tile[,] tile = createSolvedBoard(i, j);  //The temporary filled solved matrix that is used for checking if the GameMatrix is solve
+            Tile[,] tile = new Tile[Dimension, Dimension];  //The temporary filled solved matrix that is used for checking if the GameMatrix is solve
+            FillBoard(tile);
 
             for (i = 0; i < Dimension; i++)
             {
@@ -37,30 +38,6 @@ namespace N_Puzzle
             }
 
             return isSolved;                        //Returns the value from the loop that used to check the solved against a pre solved version of the board.
-        }
-
-        public Tile[,] createSolvedBoard(int i, int j)
-        {
-            Tile[,] tile = new Tile[Dimension, Dimension];
-            int x = 1;
-
-            for (i = 0; i < Dimension; i++)             //Used with x to fill the tile matrix where the last position in the board is 0
-            {
-                for (j = 0; j < Dimension; j++)
-                {
-                    if (i == Dimension - 1 && j == Dimension - 1)
-                    {
-                        tile[i, j] = new Tile(0);
-                    }
-                    else
-                    {
-                        tile[i, j] = new Tile(x);
-                        x++;
-                    }
-                }
-            }
-
-            return tile;
         }
     }
 }

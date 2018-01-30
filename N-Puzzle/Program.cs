@@ -34,21 +34,20 @@ namespace N_Puzzle
             {
                 keyInfo = Console.ReadKey(true); //ReadKey(true) gör så att vi kan läsa knapp tryck utan att det syns vilken
 
-                if (keyInfo.Key == ConsoleKey.UpArrow)
+                switch (keyInfo.Key)
                 {
-                    board.Move(Board.Direction.Up);
-                }
-                else if (keyInfo.Key == ConsoleKey.LeftArrow)
-                {
-                    board.Move(Board.Direction.Left);
-                }
-                else if (keyInfo.Key == ConsoleKey.RightArrow)
-                {
-                    board.Move(Board.Direction.Right);
-                }
-                else if (keyInfo.Key == ConsoleKey.DownArrow)
-                {
-                    board.Move(Board.Direction.Down);
+                    case ConsoleKey.UpArrow:
+                        board.Move(Board.Direction.Up);
+                        break;
+                    case ConsoleKey.DownArrow:
+                        board.Move(Board.Direction.Down);
+                        break;
+                    case ConsoleKey.RightArrow:
+                        board.Move(Board.Direction.Right);
+                        break;
+                    case ConsoleKey.LeftArrow:
+                        board.Move(Board.Direction.Left);
+                        break;
                 }
                 
                 board.DrawBoard();
