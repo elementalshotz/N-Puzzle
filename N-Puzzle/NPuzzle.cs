@@ -25,19 +25,15 @@ namespace N_Puzzle
                     if (GameMatrix[i, j].Value == solvedBoard[i, j].Value && GameMatrix[Dimension - 1, Dimension - 1].Value == 0)
                     {
                         isSolved = true;
-                        Console.Write(isSolved);
                     }
                     else if (GameMatrix[i, j].Value != solvedBoard[i, j].Value && GameMatrix[Dimension - 1, Dimension - 1].Value == 0)
                     {
                         isSolved = false;
-                        Console.Write(isSolved);
                         break;
                     }
 
                     x++;
                 }
-
-                Console.WriteLine();
 
                 if (isSolved == false)
                     break;
