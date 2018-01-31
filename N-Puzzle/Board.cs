@@ -66,7 +66,7 @@ namespace N_Puzzle
         {
             ClearBoard();                       //Clears the board
 
-            for (int i = 0; i < Dimension; i++)                 //Prints each row and column in the console as well as blankspace for 0-value location
+            for (int i =0; i < Dimension; i++)                 //Prints each row and column in the console as well as blankspace for 0-value location
             {
 
                 for (int j = 0; j < Dimension; j++)
