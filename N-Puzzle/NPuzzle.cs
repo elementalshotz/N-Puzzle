@@ -22,11 +22,11 @@ namespace N_Puzzle
             {
                 for (j = 0; j < Dimension; j++)
                 {
-                    if (GameMatrix[i, j].Value == solvedBoard[i, j].Value && GameMatrix[Dimension - 1, Dimension - 1].Value == 0)
+                    if (GameMatrix[i, j].Value == solvedBoard[i, j].Value)
                     {
                         isSolved = true;
                     }
-                    else if (GameMatrix[i, j].Value != solvedBoard[i, j].Value && GameMatrix[Dimension - 1, Dimension - 1].Value == 0)
+                    else if (GameMatrix[i, j].Value != solvedBoard[i, j].Value)
                     {
                         isSolved = false;
                         break;

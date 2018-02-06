@@ -28,30 +28,8 @@ namespace N_Puzzle
             board = new NPuzzle(size);
             board.DrawBoard();              //Prints the board on screen
 
-            ConsoleKeyInfo keyInfo;         //Used to read keys in console
-
-            do
-            {
-                keyInfo = Console.ReadKey(true); //ReadKey(true) gör så att vi kan läsa knapp tryck utan att det syns vilken
-
-                switch (keyInfo.Key)
-                {
-                    case ConsoleKey.UpArrow:
-                        board.Move(Board.Direction.Up);
-                        break;
-                    case ConsoleKey.DownArrow:
-                        board.Move(Board.Direction.Down);
-                        break;
-                    case ConsoleKey.RightArrow:
-                        board.Move(Board.Direction.Right);
-                        break;
-                    case ConsoleKey.LeftArrow:
-                        board.Move(Board.Direction.Left);
-                        break;
-                }
-                
-                board.DrawBoard();
-            } while (!board.Solved());
+            Controller controller = new Controller(board);
+            controller.Run();
 
             Console.WriteLine("Congatulations, you have solved it!");
             Console.WriteLine("Press any key to exit...");
