@@ -33,15 +33,27 @@ namespace N_Puzzle
         private void ShuffleBoard()             //Shuffle the board using Random and a variable that is used to loop ((Dimension^2)*2)-1
         {
             Random random = new Random();
-            int numberOfSwaps = Dimension * Dimension * 2 - 1;
-
-            Position firstTile, secondTile;
+            int numberOfSwaps = 1000, direction = 0;
 
             for (int counter = 0; counter < numberOfSwaps; counter++)           //Loop (Dimension^2)*2 - 1 times
             {
-                firstTile = new Position(random.Next(Dimension), random.Next(Dimension));
-                secondTile = new Position(random.Next(Dimension), random.Next(Dimension));
-                Swap(firstTile, secondTile); //Create 4 random locations 2 on x and 2 on y within 0 to Dimension and swap those
+                direction = random.Next(4) + 1;
+                
+                switch (direction)
+                {
+                    case 1:
+                        Move(Board.Direction.Up);
+                        break;
+                    case 2:
+                        Move(Board.Direction.Down);
+                        break;
+                    case 3:
+                        Move(Board.Direction.Right);
+                        break;
+                    case 4:
+                        Move(Board.Direction.Left);
+                        break;
+                }
             }
 
             FindSpace();    //When the loop is done find the space that was swapped using the loop
